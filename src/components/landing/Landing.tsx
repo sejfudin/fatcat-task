@@ -1,34 +1,44 @@
+import React, { useState } from 'react';
 import clsx from 'clsx';
+import { Card } from '@homework-task/components/landing/Card';
+import { UserList } from '@homework-task/components/userList/UserList';
 
-import { Card } from './Card.jsx';
+interface CardItem {
+    title: string;
+    text: string;
+    component?: React.ComponentType<any>;
+  }
 
-// eslint-disable-next-line no-undef
-const vscodeProjectLink = `vscode://file/${__CWD__}`;
-
-const cards = [
+const cards: CardItem[] = [
     {
         title: 'Transfer the project to TypeScript',
         text: 'Your first task involves transitioning this project from JavaScript to TypeScript.',
-        link: vscodeProjectLink,
     },
     {
         title: 'Create a scalable List Component',
         text: 'Build a scalable React component to fetch and display key information (id, name, username, email, and phone) from an API in a list format.',
-        link: vscodeProjectLink,
+        component: UserList,
     },
     {
         title: 'Create a Form Generator Component',
         text: 'Build a versatile React component with validation, API hook, and form rendering capabilities. ',
-        link: vscodeProjectLink,
+        
     },
     {
         title: 'Create a Page Generator Component',
         text: 'Create a versatile React component for dynamic webpage construction, adapting to various layouts and components through received props.',
-        link: vscodeProjectLink,
+        
     },
 ];
 
-export const Landing = () => {
+export const Landing: React.FC = () => {
+    const [selectedComponent, setSelectedComponent] = useState<React.ComponentType<any> | null>(null);
+
+  const handleReadMore = (component: React.ComponentType<any> | undefined) => {
+    setSelectedComponent(() => component || null);
+  };
+
+  const SelectedComponent = selectedComponent;
     return (
         <section
             className={clsx(
@@ -82,7 +92,6 @@ export const Landing = () => {
                         'bg-black',
                         'text-white'
                     )}
-                    href={vscodeProjectLink}
                 >
                     <span className={clsx('text-lg')}>Read docs</span>
                     <img src="/media/landing/arrow.svg" alt="" />
@@ -99,20 +108,28 @@ export const Landing = () => {
                 src="/media/landing/hero.svg"
                 alt=""
             />
-            <div
-                className={clsx(
-                    'col-span-full',
-                    'grid',
-                    'gap-8',
-                    'grid-cols-1',
-                    'md:grid-cols-2',
-                    'xl:grid-cols-4'
-                )}
-            >
-                {cards.map((card) => (
-                    <Card key={card.title} {...card} />
-                ))}
-            </div>
+           {SelectedComponent ? (
+        <SelectedComponent onBack={() => setSelectedComponent(null)} />
+      ) : (
+        <div
+          className={clsx(
+            'col-span-full',
+            'grid',
+            'gap-8',
+            'grid-cols-1',
+            'md:grid-cols-2',
+            'xl:grid-cols-4'
+          )}
+        >
+          {cards.map((card) => (
+            <Card
+              key={card.title}
+              {...card}
+              onReadMore={card.component ? () => handleReadMore(card.component) : undefined}
+            />
+          ))}
+        </div>
+      )}
         </section>
     );
 };
