@@ -22,7 +22,6 @@ export const Form: React.FC<FormProps> = ({ onBack }) => {
         register,
         handleSubmit,
         reset,
-        setError,
         formState: { errors, isSubmitting },
     } = useForm<FormFields>({
         resolver: zodResolver(schema),
@@ -47,29 +46,40 @@ export const Form: React.FC<FormProps> = ({ onBack }) => {
     return (
         <form className="w-8/12" onSubmit={handleSubmit(onSubmit)}>
             <h1 className="text-3xl font-bold">Form</h1>
-            <button className="text-base text-primary pt-4" onClick={onBack}>
+            <button
+                className="text-base text-primary pt-4 mb-4 hover:underline"
+                onClick={onBack}
+            >
                 Back
             </button>
-            <input
-                {...register('title')}
-                type="text"
-                placeholder="Title"
-                className="border border-gray-400 w-full p-2 my-2"
-            />
-            {errors.title && (
-                <p className="text-red-500 text-sm">{errors.title.message}</p>
-            )}
-            <textarea
-                {...register('body')}
-                placeholder="Body"
-                className="border border-gray-400 w-full p-2 my-2"
-            />
-            {errors.body && (
-                <p className="text-red-500 text-sm">{errors.body.message}</p>
-            )}
+            <div className="mb-4">
+                <input
+                    {...register('title')}
+                    type="text"
+                    placeholder="Title"
+                    className="border border-gray-400 w-full p-2 my-2"
+                />
+                {errors.title && (
+                    <p className="text-red text-sm">{errors.title.message}</p>
+                )}
+            </div>
+            <div className="mb-4">
+                <textarea
+                    {...register('body')}
+                    placeholder="Body"
+                    className="border border-gray-400 w-full p-2 my-2"
+                />
+                {errors.body && (
+                    <p className="text-red text-sm">{errors.body.message}</p>
+                )}
+            </div>
             <button
                 disabled={isSubmitting || mutation.isPending}
-                className="bg-primary text-white w-full p-2 mt-2"
+                className={`bg-primary text-white w-full p-2 mt-2 ${
+                    isSubmitting || mutation.isPending
+                        ? 'opacity-50 cursor-not-allowed'
+                        : ''
+                }`}
             >
                 {isSubmitting || mutation.isPending
                     ? 'Submitting...'
