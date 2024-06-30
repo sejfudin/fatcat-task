@@ -1,5 +1,5 @@
 import React from 'react';
-import { UserType } from '@interfaces';
+import { UserType } from '@interfaces/userInterfaces';
 export const User: React.FC<UserType> = ({
     id,
     name,
