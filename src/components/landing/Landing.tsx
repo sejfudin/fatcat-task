@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import clsx from 'clsx';
 import { Card } from '@homework-task/components/landing/Card';
 import { UserList } from '@homework-task/components/userList/UserList';
-import {Form} from '@homework-task/components/form/Form';
+import { Form } from '@homework-task/components/form/Form';
 
 interface CardItem {
     title: string;
     text: string;
     component?: React.ComponentType<any>;
-  }
+}
 
 const cards: CardItem[] = [
     {
@@ -24,23 +24,24 @@ const cards: CardItem[] = [
         title: 'Create a Form Generator Component',
         text: 'Build a versatile React component with validation, API hook, and form rendering capabilities. ',
         component: Form,
-        
     },
     {
         title: 'Create a Page Generator Component',
         text: 'Create a versatile React component for dynamic webpage construction, adapting to various layouts and components through received props.',
-        
     },
 ];
 
 export const Landing: React.FC = () => {
-    const [selectedComponent, setSelectedComponent] = useState<React.ComponentType<any> | null>(null);
+    const [selectedComponent, setSelectedComponent] =
+        useState<React.ComponentType<any> | null>(null);
 
-  const handleReadMore = (component: React.ComponentType<any> | undefined) => {
-    setSelectedComponent(() => component || null);
-  };
+    const handleReadMore = (
+        component: React.ComponentType<any> | undefined
+    ) => {
+        setSelectedComponent(() => component || null);
+    };
 
-  const SelectedComponent = selectedComponent;
+    const SelectedComponent = selectedComponent;
     return (
         <section
             className={clsx(
@@ -110,28 +111,32 @@ export const Landing: React.FC = () => {
                 src="/media/landing/hero.svg"
                 alt=""
             />
-           {SelectedComponent ? (
-        <SelectedComponent onBack={() => setSelectedComponent(null)} />
-      ) : (
-        <div
-          className={clsx(
-            'col-span-full',
-            'grid',
-            'gap-8',
-            'grid-cols-1',
-            'md:grid-cols-2',
-            'xl:grid-cols-4'
-          )}
-        >
-          {cards.map((card) => (
-            <Card
-              key={card.title}
-              {...card}
-              onReadMore={card.component ? () => handleReadMore(card.component) : undefined}
-            />
-          ))}
-        </div>
-      )}
+            {SelectedComponent ? (
+                <SelectedComponent onBack={() => setSelectedComponent(null)} />
+            ) : (
+                <div
+                    className={clsx(
+                        'col-span-full',
+                        'grid',
+                        'gap-8',
+                        'grid-cols-1',
+                        'md:grid-cols-2',
+                        'xl:grid-cols-4'
+                    )}
+                >
+                    {cards.map((card) => (
+                        <Card
+                            key={card.title}
+                            {...card}
+                            onReadMore={
+                                card.component
+                                    ? () => handleReadMore(card.component)
+                                    : undefined
+                            }
+                        />
+                    ))}
+                </div>
+            )}
         </section>
     );
 };
