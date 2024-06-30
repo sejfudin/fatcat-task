@@ -1,11 +1,7 @@
-import axios from 'axios';
 import { FormFields } from '@interfaces/formInterfaces';
-import { BASE_URL } from '@homework-task/components/utils/constants';
+import axiosInstance from '@homework-task/utils/axios';
 
 export const postData = async (data: FormFields): Promise<FormFields> => {
-    const response = await axios.post(
-        `${BASE_URL}/posts`,
-        data
-    );
+    const response = await axiosInstance.post('/posts', data);
     return response.data;
 };
