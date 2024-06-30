@@ -1,12 +1,18 @@
 {
   "compilerOptions": {
+    "moduleResolution": "node",
     "noImplicitAny": true,
     "strict": true,
     "strictNullChecks": true,
     "noImplicitThis": true,
+    "target": "ES2015",
+    "lib": ["ES2015", "DOM"],
+    "jsx": "react",
+    "allowSyntheticDefaultImports": true,
     "baseUrl": "./src",
     "paths": {
-      "@homework-task/*": ["*"]
+      "@homework-task/*": ["*"],
+      "@interfaces": ["interfaces.ts"]
     }
   }
 }
