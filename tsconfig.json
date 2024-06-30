@@ -12,7 +12,7 @@
     "baseUrl": "./src",
     "paths": {
       "@homework-task/*": ["*"],
-      "@interfaces": ["interfaces.ts"]
+      "@interfaces/*": ["interfaces/*"],
     }
   }
 }

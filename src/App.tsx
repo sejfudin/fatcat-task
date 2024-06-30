@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles.css';
 
-import { Landing } from '@homework-task/components/landing/Landing';
+import { Landing } from './components/landing/Landing';
 
 const App: React.FC = () => {
     return (

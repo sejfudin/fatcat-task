@@ -2,7 +2,7 @@ import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { getUserList } from '@homework-task/service/userListService';
 import {User} from './User';
-import { UserType } from '@interfaces';
+import { UserType } from '@interfaces/userInterfaces';
 
 interface UserListProps {
     onBack: () => void;
