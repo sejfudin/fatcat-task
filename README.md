@@ -12,7 +12,7 @@ Clone the repository: `git clone https://github.com/sejfudin/firstName-lastName-
 
 ### Running the Application 
 
-1. Install all dependencies wirh command: npm install``
+1. Install all dependencies wirh command: `npm install`
 2. Start application with command: `npm run dev`
 3. Visit in the browser `http://localhost:3000/`
 
