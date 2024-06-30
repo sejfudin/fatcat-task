@@ -1,10 +1,12 @@
-import axios from 'axios';
 import { UserType } from '@interfaces/userInterfaces';
-import { BASE_URL } from '@homework-task/components/utils/constants';
+import axiosInstance from '@homework-task/utils/axios';
 
 export const getUserList = async (): Promise<UserType[]> => {
-    const response = await axios.get<UserType[]>(
-        `${BASE_URL}/users`
-    );
-    return response.data;
+    try {
+        const response = await axiosInstance.get<UserType[]>(`/users`);
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching user list:', error);
+        throw new Error(error instanceof Error ? error.message : 'Error fetching user list');
+    }
 };

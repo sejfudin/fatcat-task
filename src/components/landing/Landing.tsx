@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import { Card } from '@homework-task/components/landing/Card';
 import { UserList } from '@homework-task/components/userList/UserList';
 import { Form } from '@homework-task/components/form/Form';
+import { PageBuilder } from '@homework-task/components/pageBuilder/PageBuilder';
 
 interface CardItem {
     title: string;
@@ -28,6 +29,7 @@ const cards: CardItem[] = [
     {
         title: 'Create a Page Generator Component',
         text: 'Create a versatile React component for dynamic webpage construction, adapting to various layouts and components through received props.',
+        component: PageBuilder,
     },
 ];
 
