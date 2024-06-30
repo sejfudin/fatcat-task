@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "noImplicitThis": true,
+    "baseUrl": "./src",
+    "paths": {
+      "@homework-task/*": ["*"]
+    }
+  }
+}
